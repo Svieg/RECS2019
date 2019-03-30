@@ -1,0 +1,30 @@
+#!/bin/sh
+# FLAG-323fd1c02753d41278fc19f6c9792e4f
+
+mkdir /home
+mkdir /home/pwn75
+echo "pwn75:x:1000:1000:pwn75:/home/pwn75:/bin/ash" >> /etc/passwd
+echo "pwn75:x:1000:" >> /etc/group
+echo "pwn75:$1$eQQ17rVi$d5rpPa/afuXYJS2Rc.kzQ1:17976:0:99999:7:::" >> /etc/shadow
+chown pwn75 /home/pwn75
+chown pwn150 /bin/pwn75
+chmod ug+s /bin/pwn75
+echo "FLAG-11DF1AD63BAA45B62AE2038FC1AE75E0" >> /home/pwn75/flag.txt
+
+mkdir /home
+mkdir /home/pwn150
+echo "pwn150:x:1001:1001:pwn150:/home/pwn150:/bin/ash" >> /etc/passwd
+echo "pwn150:x:1001:" >> /etc/group
+echo "pwn150:$1$5.8HkCEi$M.UQflg5kneTZLRot0TvL/:17976:0:99999:7:::" >> /etc/shadow
+chown pwn150 /home/pwn150
+chown pwn150 /bin/pwn150
+chmod ug+s /bin/pwn150
+echo "FLAG-093E7F0FB89DAF17CBD33A5E843109A8" >> /home/pwn150/flag.txt
+
+#Start services
+/bin/re100
+/bin/re200
+/bin/pwn75
+/bin/pwn150
+
+exit 1
